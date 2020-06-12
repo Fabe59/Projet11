@@ -1,0 +1,17 @@
+<footer class="bg-light py-5 d-flex">
+    <div class="col-lg-4 text-center"><a href="{% url 'food:legals' %}">Mentions légales</a></div>
+    <div class="col-lg-4 small text-center">&copy; Copyright {% now 'Y' %} &middot; Pur Beurre &middot; All rights reserved</div>
+    <div class="col-lg-4 text-center"><a href="{% url 'food:home' %}#contact">Contact</a></div>
+</footer>
+
+<div class="cookie-container">
+    <p class="cookieparagraph">
+      We use cookies in this website to give you the best experience on our
+      site. To learn more about cookies, go to the <a href="https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi" target="_blank">CNIL website</a>
+    </p>
+
+    <button class="cookie-btn">
+      I agree
+    </button>
+</div>
+<script src="/static/js/cookie.js"></script>

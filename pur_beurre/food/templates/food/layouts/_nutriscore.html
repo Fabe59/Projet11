@@ -1,0 +1,17 @@
+    {% if article.nutrition_grade_fr ==  'a' %}
+        {% load static %}
+        <img src="{% static "food/img/nutriscore-a.svg" %}" alt="nutriscore-a">
+    {% elif article.nutrition_grade_fr ==  'b' %}
+        {% load static %}
+        <img src="{% static "food/img/nutriscore-b.svg" %}" alt="nutriscore-b">
+    {% elif article.nutrition_grade_fr ==  'c' %}
+        {% load static %}
+        <img src="{% static "food/img/nutriscore-c.svg" %}" alt="nutriscore-c">
+    {% elif article.nutrition_grade_fr ==  'd' %}
+        {% load static %}
+        <img src="{% static "food/img/nutriscore-d.svg" %}" alt="nutriscore-d">
+    {% else %}
+        {% load static %}
+        <img src="{% static "food/img/nutriscore-e.svg" %}" alt="nutriscore-e">
+    {% endif %}
+    <br>
