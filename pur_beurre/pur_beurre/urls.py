@@ -21,5 +21,6 @@ urlpatterns = [
     path('', include('food.urls')),
     path('users/', include('users.urls')),
     path("users/", include("django.contrib.auth.urls")),
+    path("autocomplete/", include("autocomplete.urls", namespace="autocomplete")),
 
 ]

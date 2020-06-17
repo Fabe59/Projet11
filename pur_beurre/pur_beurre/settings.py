@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'food.apps.FoodConfig',
     'crispy_forms',
+    'autocomplete.apps.AutocompleteConfig',
 ]
 
 MIDDLEWARE = [
