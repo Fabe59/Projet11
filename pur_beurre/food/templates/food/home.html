@@ -12,7 +12,7 @@
                 <div class="col-lg-8 align-self-baseline">
                     <p class="text-white-75 font-weight-light mb-5">Trouvez un produit de substitution à ceux que vous consommez tous les jours</p>
                     <form class="d-flex" action="{% url 'food:search' %}" method="GET">
-                        <input class="col-md-8 form-inline input-group" type="search" id="searchbox" name="search" placeholder="Quel produit souhaitez-vous substituer ?" autofocus>
+                        <input type="search" name="search" id="searchbox" class="col-md-8 form-inline input-group" placeholder="Quel produit souhaitez-vous substituer ?" autofocus>
                         <input class="btn btn-primary btn-xl js-scroll-trigger ml-auto" type="submit" value="Lancer la recherche">
                     </form>
                 </div>

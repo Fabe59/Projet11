@@ -4,5 +4,5 @@ from . import views
 
 app_name = "autocomplete"
 urlpatterns = [
-    path("", views.complete, name="complete"),
+    path('', views.complete, name="complete"),
 ]

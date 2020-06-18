@@ -8,9 +8,9 @@
 
                 <li class="nav-item">
                     <form action="{% url 'food:search' %}" method="GET">
-                    <input type="search" name="search" id="searchbox" placeholder="Substituer un produit ?" size="30px">
+                    <input type="search" name="search" id="searchboxnav" placeholder="Substituer un produit ?" size="30px">
                     </form>
-                  </li>
+                </li>
             
                 {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'users:profile' %}"><i class="far fa-user"></i> Profile</a></li>
