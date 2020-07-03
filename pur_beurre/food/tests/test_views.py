@@ -34,10 +34,38 @@ class SearchViews(TestCase):
         nutella = Product.objects.create(**nutella)
         self.nutella = nutella
 
+        choco = {
+            'id': '313',
+            'brand': 'Auchan',
+            'name': 'Choco',
+            'nutrition_grade_fr': "d",
+            'image_nutrition_url': 'https://nutchoco.jpg',
+            'image_url': 'https://choco.jpg',
+        }
+        choco = Product.objects.create(**choco)
+        self.choco = choco
+
+        cacao = {
+            'id': '314',
+            'brand': 'Carrefour',
+            'name': 'Cacao',
+            'nutrition_grade_fr': "c",
+            'image_nutrition_url': 'https://nutcacao.jpg',
+            'image_url': 'https://cacao.jpg',
+        }
+        cacao = Product.objects.create(**cacao)
+        self.cacao = cacao
+
+        self.liste_prod = Product.objects.all()
+
     def test_foodsearch_valid(self):
         response = self.client.get('/search/?search=%s' % ('nutella'))
+        self.assertEqual((response.context['research']), 'nutella')
+        self.assertEqual((response.context['name']), self.nutella.name)
+        self.assertEqual((response.context['image']), self.nutella.image_url)
+        self.assertEqual((response.context['search']), self.liste_prod)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'food/nosubstitute.html')
+        self.assertTemplateUsed(response, 'food/search.html')
 
     def test_foodsearch_empty(self):
         response = self.client.get('/search/?search=%s' % (''))

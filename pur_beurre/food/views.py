@@ -28,7 +28,7 @@ def search(request):
         for cat in categories:
             liste_prod = cat.product_set.filter(
                 nutrition_grade_fr__lt=nutriscore
-                ).order_by('nutrition_grade_fr')
+                ).order_by('name')
 
         if not liste_prod:
             return render(
@@ -52,7 +52,7 @@ def search(request):
             'research': research,
             'name': name,
             'image': image,
-            'search': page_obj
+            'search': liste_prod,
         }
         )
 
