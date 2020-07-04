@@ -52,7 +52,7 @@ def search(request):
             'research': research,
             'name': name,
             'image': image,
-            'search': liste_prod,
+            'search': page_obj,
         }
         )
 

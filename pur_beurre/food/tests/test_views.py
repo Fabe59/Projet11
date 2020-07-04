@@ -43,17 +43,16 @@ class SearchViews(TestCase):
         nutella.category.add(dejeuner)
         self.nutella = nutella
 
-        choco = {
-            'id': '313',
-            'brand': 'Auchan',
-            'name': 'Choco',
-            'nutrition_grade_fr': "d",
-            'image_nutrition_url': 'https://nutchoco.jpg',
-            'image_url': 'https://choco.jpg',
+        chips = {
+            'id': '111',
+            'brand': 'Lays',
+            'name': 'Chips',
+            'nutrition_grade_fr': "e",
+            'image_nutrition_url': 'https://nutchips.jpg',
+            'image_url': 'https://chips.jpg',
         }
-        choco = Product.objects.create(**choco)
-        choco.category.add(dejeuner)
-        self.choco = choco
+        chips = Product.objects.create(**chips)
+        self.chips = chips
 
         cacao = {
             'id': '314',
@@ -67,18 +66,36 @@ class SearchViews(TestCase):
         cacao.category.add(dejeuner)
         self.cacao = cacao
 
-        self.liste_prod = Product.objects.filter(
-                nutrition_grade_fr__lt=self.nutella.nutrition_grade_fr
-                ).order_by('name')
+        choco = {
+            'id': '313',
+            'brand': 'Auchan',
+            'name': 'Choco',
+            'nutrition_grade_fr': "d",
+            'image_nutrition_url': 'https://nutchoco.jpg',
+            'image_url': 'https://choco.jpg',
+        }
+        choco = Product.objects.create(**choco)
+        choco.category.add(dejeuner)
+        self.choco = choco
+
+        self.liste_prod = [self.cacao, self.choco]
 
     def test_foodsearch_valid(self):
         response = self.client.get('/search/?search=%s' % ('nutella'))
         self.assertEqual((response.context['research']), 'nutella')
         self.assertEqual((response.context['name']), self.nutella.name)
         self.assertEqual((response.context['image']), self.nutella.image_url)
-        self.assertEqual((response.context['search']), self.liste_prod)
+        self.assertQuerysetEqual((response.context['search']), (repr(elt) for elt in self.liste_prod))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'food/search.html')
+
+    def test_foodsearch_nosubstitute(self):
+        response = self.client.get('/search/?search=%s' % ('chips'))
+        self.assertEqual((response.context['research']), 'chips')
+        self.assertEqual((response.context['name']), self.chips.name)
+        self.assertEqual((response.context['image']), self.chips.image_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'food/nosubstitute.html')
 
     def test_foodsearch_empty(self):
         response = self.client.get('/search/?search=%s' % (''))
