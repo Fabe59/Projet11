@@ -1,7 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
-from food.models import Product, Favorites
+from food.models import Category, Product, Favorites
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 
 
 class HomepageViews(TestCase):
@@ -23,6 +24,13 @@ class LegalsViews(TestCase):
 class SearchViews(TestCase):
 
     def setUp(self):
+
+        dejeuner = {
+            'name': 'dejeuner',
+        }
+        dejeuner = Category.objects.create(**dejeuner)
+        self.dejeuner = dejeuner
+
         nutella = {
             'id': '312',
             'brand': 'Ferrero',
@@ -32,6 +40,7 @@ class SearchViews(TestCase):
             'image_url': 'https://nut.jpg',
         }
         nutella = Product.objects.create(**nutella)
+        nutella.category.add(dejeuner)
         self.nutella = nutella
 
         choco = {
@@ -43,6 +52,7 @@ class SearchViews(TestCase):
             'image_url': 'https://choco.jpg',
         }
         choco = Product.objects.create(**choco)
+        choco.category.add(dejeuner)
         self.choco = choco
 
         cacao = {
@@ -54,9 +64,12 @@ class SearchViews(TestCase):
             'image_url': 'https://cacao.jpg',
         }
         cacao = Product.objects.create(**cacao)
+        cacao.category.add(dejeuner)
         self.cacao = cacao
 
-        self.liste_prod = Product.objects.all()
+        self.liste_prod = Product.objects.filter(
+                nutrition_grade_fr__lt=self.nutella.nutrition_grade_fr
+                ).order_by('name')
 
     def test_foodsearch_valid(self):
         response = self.client.get('/search/?search=%s' % ('nutella'))
