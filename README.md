@@ -1,10 +1,8 @@
 # Projet11
 
-P11 DA Python OpenClassrooms .
-- Améliorations du projet 8 Pur Beurre
-
+P11 DA Python OpenClassrooms
 - Description:
-Improve an existing project in Python
+Improve an existing project in Python (based on Project 8)  
 
 - Added features :  
 1: An auto-completion system  
