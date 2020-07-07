@@ -12,12 +12,12 @@ Improve an existing project in Python
 
 ## To use the Project:
 
-- 1: Initialization of the project locally:
-1: To initialize the virtual environment: pipenv install.
-2: To position yourself in pipenv : pipenv shell.
+- A: Initialization of the project locally: 
+1: To initialize the virtual environment: pipenv install. 
+2: To position yourself in pipenv : pipenv shell. 
 3: Execute the command python manage.py off_commands 
-4: To launch the application locally, open your browser and enter the following url: "http://127.0.0.1:8000/".
-
-- 2: Unit test:
-: To launch the unit tests execute in the terminal the command coverage run --source='.' manage.py test.
-: To view the test report: coverage report.
+4: To launch the application locally, open your browser and enter the following url: "http://127.0.0.1:8000/". 
+  
+- B: Unit test:
+1: To launch the unit tests execute in the terminal the command coverage run --source='.' manage.py test.
+2: To view the test report: coverage report.
