@@ -2,7 +2,6 @@ from django.test import TestCase
 from django.urls import reverse
 from food.models import Category, Product, Favorites
 from django.contrib.auth.models import User
-from django.core.paginator import Paginator
 
 
 class HomepageViews(TestCase):
@@ -85,7 +84,9 @@ class SearchViews(TestCase):
         self.assertEqual((response.context['research']), 'nutella')
         self.assertEqual((response.context['name']), self.nutella.name)
         self.assertEqual((response.context['image']), self.nutella.image_url)
-        self.assertQuerysetEqual((response.context['search']), (repr(elt) for elt in self.liste_prod))
+        self.assertQuerysetEqual(
+            (response.context['search']),
+            (repr(elt) for elt in self.liste_prod))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'food/search.html')
 
