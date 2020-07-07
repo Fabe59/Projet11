@@ -7,8 +7,8 @@ P11 DA Python OpenClassrooms .
 Improve an existing project in Python
 
 - Added features :
-1: An auto-completion system .
-2: User password reset option .
+1: An auto-completion system  
+2: User password reset option  
 
 ## To use the Project:
 
