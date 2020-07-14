@@ -6,5 +6,5 @@ from django.urls import reverse, resolve
 class Autocomplete_Url_Test(TestCase):
 
     def test_complete_url_view(self):
-        suggestion = resolve(reverse("autocomplete:complete"))
-        self.assertEqual(suggestion.func, complete)
+        url = reverse("autocomplete:complete")
+        self.assertEquals(resolve(url).func, complete)
